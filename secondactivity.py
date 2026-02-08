@@ -80,3 +80,29 @@ def run_method(method, entry, tree, progress):
         threading.Thread(target=lambda: run_multithreading(grades, tree, progress)).start()
     elif method == "process":
         threading.Thread(target=lambda: run_multiprocessing(grades, tree, progress)).start()
+
+#Main Entry Point 
+if __name__== "__main__":
+    root = tk.Tk()
+    root.title("Grade Computing System")
+
+    tk.Label(root, text="Enter grades (separated by space):", bg="#e9afef", fg ="darkviolet").pack(pady=5)
+    grades_entry = tk.Entry(root, width=40)
+    grades_entry.pack(pady=5)
+
+    progress = ttk.Progressbar(root, orient="horizontal", length=300, mode="indeterminate")
+    progress.pack(pady=10)
+
+    columns = ("Method", "GWA Outputs", "Overall GWA", "Execution Time")
+    tree = ttk.Treeview(root, columns=columns, show="headings", height=5,)
+    for col in columns:
+        tree.heading(col, text=col)
+        tree.column(col, width=150)
+    tree.pack(pady=10)
+
+    tk.Button(root, text="Run Multithreading", fg="darkviolet", command=lambda: run_method("thread", grades_entry, tree, progress)).pack(pady=5)
+    tk.Button(root, text="Run Multiprocessing", fg="darkviolet", command=lambda: run_method("process", grades_entry, tree, progress)).pack(pady=5)
+
+    root.configure(bg="#e9afef")
+
+    root.mainloop()
