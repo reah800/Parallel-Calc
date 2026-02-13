@@ -16,3 +16,15 @@ employees = [
     ("Diana", 40000),
     ("Edward", 35000)
 ]
+
+# Payroll computation function
+def compute_payroll(employee):
+    name, salary = employee
+    sss = compute_sss(salary)
+    philhealth = compute_philhealth(salary)
+    pagibig = compute_pagibig(salary)
+    tax = compute_tax(salary)
+    total_deduction = sss + philhealth + pagibig + tax
+    net_salary = salary - total_deduction
+    return (name, salary, total_deduction, net_salary)
+
