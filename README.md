@@ -18,3 +18,11 @@
 
       6. How did your group apply creative coding or algorithmic solutions in this Lab?
       Our group applied creative coding by designing a colorful GUI, adding a results table with execution times, and implementing both multithreading and multiprocessing algorithms to compare performance, making the program interactive, robust, and visually engaging.
+
+
+
+
+
+=============================================================================================================================================================================
+
+                         Third Laboratory Activity - Applying Task and Data Parallelism using concurrent.futures

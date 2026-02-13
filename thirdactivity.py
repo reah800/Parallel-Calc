@@ -65,3 +65,27 @@ def run_data_parallelism():
     for name, gross, deduction, net in results:
         
         tree.insert("", tk.END, values=(name, f"{gross:.2f}", f"{deduction:.2f}", f"{net:.2f}"))
+    
+# GUI Runner 
+if __name__== "__main__":
+    root = tk.Tk()
+    root.title("Payroll Parallelism System")
+
+    tk.Label(root, text="Payroll Parallelism System", bg="#be9d80", fg ="#482700").pack(pady=5)
+   
+    output_text = tk.Text(root, width=60, height=20)
+    output_text.pack(pady=5)
+    tk.Button(root, text="Run Task Parallelism", bg="#694820", fg="#D4CABD", command=run_task_parallelism, width=25).pack(pady=5)
+    tk.Button(root, text="Run Data Parallelism", bg="#694820", fg="#D4CABD", command=run_data_parallelism, width=25).pack(pady=5)
+
+    # Treeview for Data Parallelism 
+    columns = ("Employee", "Gross Salary", "Total Deduction", "Net Salary")
+    tree = ttk.Treeview(root, columns=columns, show="headings", height=5)
+    for col in columns:
+        tree.heading(col, text=col)
+        tree.column(col, width=150)
+    tree.pack(pady=10)
+
+    root.configure(bg="#be9d80")
+
+    root.mainloop()
