@@ -64,3 +64,24 @@ def fulfill_sequential(prescriptions):
                 print(f"[{pid}] Reprocessing due to rejection...\n")
     end = time.time()
     return end - start
+
+# Parallel execution
+def process_prescription(pid):
+    while True:
+        intake(pid)
+        verify(pid)
+        retrieve(pid)
+        label_and_package(pid)
+        process_payment(pid)
+        if approve(pid):
+            break
+        else:
+            print(f"[{pid}] Reprocessing due to rejection...\n")
+
+def fulfill_parallel(prescriptions):
+    print("\n--- Parallel Execution ---")
+    start = time.time()
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        executor.map(process_prescription, prescriptions)
+    end = time.time()
+    return end - start
