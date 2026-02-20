@@ -29,4 +29,20 @@ def process_payment(pid):
     time.sleep(0.5)
     print(f"[{pid}] Payment completed")
 
+#pharmacist approval
+pharmacist_lock = threading.Lock()
 
+def pharmacist_approves():
+    
+    return random.random() < 0.8
+
+def approve(pid):
+    with pharmacist_lock:
+        print(f"[{pid}] Pharmacist approval started")
+        time.sleep(0.3)
+        if pharmacist_approves():
+            print(f"[{pid}] Approved and dispensed")
+            return True
+        else:
+            print(f"[{pid}] Rejected — needs correction")
+            return False
