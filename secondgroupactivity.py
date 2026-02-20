@@ -46,3 +46,21 @@ def approve(pid):
         else:
             print(f"[{pid}] Rejected — needs correction")
             return False
+
+# Sequential execution
+def fulfill_sequential(prescriptions):
+    print("\n--- Sequential Execution ---")
+    start = time.time()
+    for pid in prescriptions:
+        while True:
+            intake(pid)
+            verify(pid)
+            retrieve(pid)
+            label_and_package(pid)
+            process_payment(pid)
+            if approve(pid):
+                break
+            else:
+                print(f"[{pid}] Reprocessing due to rejection...\n")
+    end = time.time()
+    return end - start
