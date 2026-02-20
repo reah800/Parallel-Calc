@@ -88,7 +88,7 @@ def fulfill_parallel(prescriptions):
 
 
 # Run benchmark
-if name == "main":
+if __name__ == "__main__":
     prescriptions = [f"Rx-{i}" for i in range(1, 11)]
 
     seq_time = fulfill_sequential(prescriptions)
