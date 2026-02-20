@@ -85,3 +85,15 @@ def fulfill_parallel(prescriptions):
         executor.map(process_prescription, prescriptions)
     end = time.time()
     return end - start
+
+
+# Run benchmark
+if name == "main":
+    prescriptions = [f"Rx-{i}" for i in range(1, 11)]
+
+    seq_time = fulfill_sequential(prescriptions)
+    par_time = fulfill_parallel(prescriptions)
+
+    print(f"\nSequential Time: {seq_time:.2f} seconds")
+    print(f"Parallel Time:   {par_time:.2f} seconds")
+    print(f"Speedup:         {seq_time / par_time:.2f}x")
